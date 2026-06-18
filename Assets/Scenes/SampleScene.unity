@@ -1098,6 +1098,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraFollow
   player: {fileID: 956857689}
+  upperLimit: 0.68
+  smoothSpeed: 8
+  deathLimit: -0.15
+  sceneToReload: SampleScene
 --- !u!1 &818020936
 GameObject:
   m_ObjectHideFlags: 0
@@ -1377,7 +1381,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ScreenWrapPlayer
   mainCamera: {fileID: 519420031}
   visualCopy: {fileID: 2103485559}
-  extraMargin: 0.5
+  extraMargin: 0.7
 --- !u!1 &1086192166
 GameObject:
   m_ObjectHideFlags: 0
