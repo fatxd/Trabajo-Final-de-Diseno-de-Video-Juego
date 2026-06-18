@@ -5,6 +5,7 @@ public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager Instance;
 
+    [Header("Referencias")]
     public Transform player;
     public TMP_Text scoreText;
     public TMP_Text bestText;
@@ -12,28 +13,49 @@ public class ScoreManager : MonoBehaviour
     private int score;
     private int bestScore;
 
-    void Awake()
+    public int Score => score;
+    public int BestScore => bestScore;
+
+    private void Awake()
     {
         Instance = this;
     }
 
-    void Start()
+    private void Start()
     {
         bestScore = PlayerPrefs.GetInt("BestScore", 0);
-        bestText.text = "Best: " + bestScore;
+
+        UpdateScoreUI();
+        UpdateBestUI();
     }
 
-    void Update()
+    private void Update()
     {
-        score = Mathf.Max(score, Mathf.FloorToInt(player.position.y));
+        if (player == null)
+            return;
 
-        scoreText.text = "Score: " + score;
+        score = Mathf.Max(score, Mathf.FloorToInt(player.position.y));
 
         if (score > bestScore)
         {
             bestScore = score;
             PlayerPrefs.SetInt("BestScore", bestScore);
-            bestText.text = "Best: " + bestScore;
+            PlayerPrefs.Save();
         }
+
+        UpdateScoreUI();
+        UpdateBestUI();
+    }
+
+    private void UpdateScoreUI()
+    {
+        if (scoreText != null)
+            scoreText.text = "Score: " + score;
+    }
+
+    private void UpdateBestUI()
+    {
+        if (bestText != null)
+            bestText.text = "Best: " + bestScore;
     }
 }

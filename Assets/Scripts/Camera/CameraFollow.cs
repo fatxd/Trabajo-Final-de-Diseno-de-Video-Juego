@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class CameraFollow : MonoBehaviour
 {
@@ -12,10 +11,11 @@ public class CameraFollow : MonoBehaviour
 
     [Header("Game Over")]
     [SerializeField] private float deathLimit = -0.15f;
-    [SerializeField] private string sceneToReload = "Level 1";
+    [SerializeField] private GameOverManager gameOverManager;
 
     private Camera cam;
     private float targetY;
+    private bool gameOverTriggered;
 
     private void Start()
     {
@@ -25,7 +25,7 @@ public class CameraFollow : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (player == null || cam == null)
+        if (player == null || cam == null || gameOverTriggered)
             return;
 
         Vector3 playerViewportPos = cam.WorldToViewportPoint(player.position);
@@ -52,7 +52,10 @@ public class CameraFollow : MonoBehaviour
 
         if (playerViewportPos.y < deathLimit)
         {
-            SceneManager.LoadScene(sceneToReload);
+            gameOverTriggered = true;
+
+            if (gameOverManager != null)
+                gameOverManager.ShowGameOver();
         }
     }
 }
