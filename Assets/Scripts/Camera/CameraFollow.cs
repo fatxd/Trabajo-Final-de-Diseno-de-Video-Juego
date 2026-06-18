@@ -1,32 +1,26 @@
 using UnityEngine;
+
 public class CameraFollow : MonoBehaviour
 {
-    public Transform target;
-    public float smoothSpeed = 3f;
+    public Transform player;
 
     private float highestY;
 
     void Start()
     {
-        highestY = transform.position.y;
+        highestY = transform.position.y; // NO usar player.position.y
     }
 
     void LateUpdate()
     {
-        if (target.position.y > highestY)
+        if (player.position.y > highestY)
         {
-            highestY = target.position.y;
+            highestY = player.position.y;
 
-            Vector3 targetPos = new Vector3(
-                transform.position.x,
+            transform.position = new Vector3(
+                0f,
                 highestY,
-                transform.position.z
-            );
-
-            transform.position = Vector3.Lerp(
-                transform.position,
-                targetPos,
-                smoothSpeed * Time.deltaTime
+                -10f
             );
         }
     }

@@ -1,9 +1,18 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.EnhancedTouch;
+using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
 
 public class PlayerController : MonoBehaviour
 {
-    public float moveSpeed = 5f;
-    public float bounceForce = 12f;
+    [Header("Movimiento")]
+    [SerializeField] private float moveSpeed = 5f;
+
+    [Header("Salto")]
+    [SerializeField] private float bounceForce = 8f;
+
+    [Header("Game Over")]
+    [SerializeField] private float deathOffset = 1f;
 
     private Rigidbody2D rb;
     private float moveDirection;
@@ -13,33 +22,51 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
+    private void OnEnable()
+    {
+        EnhancedTouchSupport.Enable();
+    }
+
+    private void OnDisable()
+    {
+        EnhancedTouchSupport.Disable();
+    }
+
     private void Update()
     {
-        moveDirection = 0;
+        moveDirection = 0f;
 
 #if UNITY_EDITOR
-
-        if (Input.GetMouseButton(0))
+        // Prueba con mouse en Unity
+        if (Mouse.current != null && Mouse.current.leftButton.isPressed)
         {
-            if (Input.mousePosition.x < Screen.width / 2f)
+            if (Mouse.current.position.ReadValue().x < Screen.width / 2f)
                 moveDirection = -1f;
             else
                 moveDirection = 1f;
         }
-
 #else
+        // Touch en móvil
+        if (Touch.activeTouches.Count > 0)
+        {
+            var touch = Touch.activeTouches[0];
 
-    if (Input.touchCount > 0)
-    {
-        Touch touch = Input.GetTouch(0);
-
-        if (touch.position.x < Screen.width / 2f)
-            moveDirection = -1f;
-        else
-            moveDirection = 1f;
-    }
-
+            if (touch.screenPosition.x < Screen.width / 2f)
+                moveDirection = -1f;
+            else
+                moveDirection = 1f;
+        }
 #endif
+
+        float limiteInferior =
+            Camera.main.transform.position.y -
+            Camera.main.orthographicSize -
+            deathOffset;
+
+        if (transform.position.y < limiteInferior)
+        {
+            //GameManager.Instance.GameOver();
+        }
     }
 
     private void FixedUpdate()
@@ -52,13 +79,19 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Platform") &&
-            rb.linearVelocity.y <= 0)
+        Debug.Log("Choque con: " + collision.gameObject.name);
+
+        if (collision.gameObject.CompareTag("Platform"))
         {
-            rb.linearVelocity = new Vector2(
-                rb.linearVelocity.x,
-                bounceForce
-            );
+            Debug.Log("REBOTE");
+
+            if (rb.linearVelocity.y <= 0)
+            {
+                rb.linearVelocity = new Vector2(
+                    rb.linearVelocity.x,
+                    bounceForce
+                );
+            }
         }
     }
 }
