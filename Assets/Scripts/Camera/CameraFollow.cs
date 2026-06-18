@@ -1,27 +1,58 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CameraFollow : MonoBehaviour
 {
-    public Transform player;
+    [Header("Referencia")]
+    [SerializeField] private Transform player;
 
-    private float highestY;
+    [Header("Seguimiento hacia arriba")]
+    [SerializeField] private float upperLimit = 0.65f;
+    [SerializeField] private float smoothSpeed = 8f;
 
-    void Start()
+    [Header("Game Over")]
+    [SerializeField] private float deathLimit = -0.15f;
+    [SerializeField] private string sceneToReload = "Level 1";
+
+    private Camera cam;
+    private float targetY;
+
+    private void Start()
     {
-        highestY = transform.position.y; // NO usar player.position.y
+        cam = GetComponent<Camera>();
+        targetY = transform.position.y;
     }
 
-    void LateUpdate()
+    private void LateUpdate()
     {
-        if (player.position.y > highestY)
-        {
-            highestY = player.position.y;
+        if (player == null || cam == null)
+            return;
 
-            transform.position = new Vector3(
-                0f,
-                highestY,
-                -10f
-            );
+        Vector3 playerViewportPos = cam.WorldToViewportPoint(player.position);
+
+        if (playerViewportPos.y > upperLimit)
+        {
+            float difference = playerViewportPos.y - upperLimit;
+            float worldDifference = difference * cam.orthographicSize * 2f;
+
+            targetY += worldDifference;
+        }
+
+        Vector3 targetPosition = new Vector3(
+            0f,
+            targetY,
+            -10f
+        );
+
+        transform.position = Vector3.Lerp(
+            transform.position,
+            targetPosition,
+            Time.deltaTime * smoothSpeed
+        );
+
+        if (playerViewportPos.y < deathLimit)
+        {
+            SceneManager.LoadScene(sceneToReload);
         }
     }
 }
