@@ -10,12 +10,14 @@ public class PlayerController : MonoBehaviour
 
     [Header("Salto")]
     [SerializeField] private float bounceForce = 8f;
+    [SerializeField] private float bounceCooldown = 0.08f;
 
     [Header("Game Over")]
     [SerializeField] private float deathOffset = 1f;
 
     private Rigidbody2D rb;
     private float moveDirection;
+    private float lastBounceTime;
 
     private void Awake()
     {
@@ -37,7 +39,6 @@ public class PlayerController : MonoBehaviour
         moveDirection = 0f;
 
 #if UNITY_EDITOR
-        // Prueba con mouse en Unity
         if (Mouse.current != null && Mouse.current.leftButton.isPressed)
         {
             if (Mouse.current.position.ReadValue().x < Screen.width / 2f)
@@ -46,7 +47,6 @@ public class PlayerController : MonoBehaviour
                 moveDirection = 1f;
         }
 #else
-        // Touch en móvil
         if (Touch.activeTouches.Count > 0)
         {
             var touch = Touch.activeTouches[0];
@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour
 
         if (transform.position.y < limiteInferior)
         {
-            //GameManager.Instance.GameOver();
+            // GameManager.Instance.GameOver();
         }
     }
 
@@ -79,19 +79,41 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("Choque con: " + collision.gameObject.name);
+        TryBounce(collision);
+    }
 
-        if (collision.gameObject.CompareTag("Platform"))
-        {
-            Debug.Log("REBOTE");
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        TryBounce(collision);
+    }
 
-            if (rb.linearVelocity.y <= 0)
-            {
-                rb.linearVelocity = new Vector2(
-                    rb.linearVelocity.x,
-                    bounceForce
-                );
-            }
-        }
+    private void TryBounce(Collision2D collision)
+    {
+        if (!collision.gameObject.CompareTag("Platform"))
+            return;
+
+        if (Time.time < lastBounceTime + bounceCooldown)
+            return;
+
+        if (rb.linearVelocity.y > 0.05f)
+            return;
+
+        if (!IsTouchingTopOfPlatform(collision))
+            return;
+
+        rb.linearVelocity = new Vector2(
+            rb.linearVelocity.x,
+            bounceForce
+        );
+
+        lastBounceTime = Time.time;
+    }
+
+    private bool IsTouchingTopOfPlatform(Collision2D collision)
+    {
+        float playerBottom = transform.position.y - 0.25f;
+        float platformTop = collision.collider.bounds.max.y;
+
+        return playerBottom >= platformTop - 0.15f;
     }
 }
