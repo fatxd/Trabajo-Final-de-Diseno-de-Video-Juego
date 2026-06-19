@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     [Header("Movimiento")]
     [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private PlayerVisualAnimator visualAnimator;
 
     [Header("Salto")]
     [SerializeField] private float bounceForce = 8f;
@@ -105,6 +106,8 @@ public class PlayerController : MonoBehaviour
             rb.linearVelocity.x,
             bounceForce
         );
+        if (visualAnimator != null)
+            visualAnimator.PlaySquash();
 
         lastBounceTime = Time.time;
     }

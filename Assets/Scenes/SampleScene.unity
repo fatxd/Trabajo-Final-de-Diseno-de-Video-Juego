@@ -4247,6 +4247,7 @@ GameObject:
   - component: {fileID: 735013318}
   - component: {fileID: 735013317}
   - component: {fileID: 735013316}
+  - component: {fileID: 735013321}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -4284,6 +4285,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ScreenWrapPlayer
   mainCamera: {fileID: 1934976426}
   visualCopy: {fileID: 864359778}
+  playerSpriteRenderer: {fileID: 735013320}
+  visualCopySpriteRenderer: {fileID: 864359779}
   extraMargin: 0.5
 --- !u!58 &735013317
 CircleCollider2D:
@@ -4319,8 +4322,8 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Radius: 0.5
+  m_Offset: {x: 0, y: 0.033654485}
+  m_Radius: 0.40801117
 --- !u!50 &735013318
 Rigidbody2D:
   serializedVersion: 5
@@ -4333,7 +4336,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 1
-  m_Mass: 0.38484508
+  m_Mass: 0.25626546
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 3
@@ -4361,6 +4364,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   moveSpeed: 6
+  visualAnimator: {fileID: 735013321}
   bounceForce: 12
   bounceCooldown: 0.08
   deathOffset: 1
@@ -4413,7 +4417,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 3
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 1121562362247880627, guid: 42089c5498730c54385496d49137229e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -4423,6 +4427,38 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &735013321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 735013314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd99680ed81125d4ba4b93bf47707d0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerVisualAnimator
+  spriteRenderer: {fileID: 735013320}
+  rb: {fileID: 735013318}
+  yellowSprites:
+  - {fileID: 1121562362247880627, guid: 42089c5498730c54385496d49137229e, type: 3}
+  - {fileID: -5928334608118142766, guid: 42089c5498730c54385496d49137229e, type: 3}
+  - {fileID: 5603320770599460364, guid: 42089c5498730c54385496d49137229e, type: 3}
+  blueSprites:
+  - {fileID: -4274877859721825052, guid: 953380f840257a84ebb69ce3b4847695, type: 3}
+  - {fileID: 2671695723069143264, guid: 953380f840257a84ebb69ce3b4847695, type: 3}
+  - {fileID: -6047317666673994786, guid: 953380f840257a84ebb69ce3b4847695, type: 3}
+  whiteSprites:
+  - {fileID: 6890397865361333035, guid: f6abd21c45432374bbbc3b4448685a3c, type: 3}
+  - {fileID: 3062174865134130433, guid: f6abd21c45432374bbbc3b4448685a3c, type: 3}
+  - {fileID: 7160422802845434814, guid: f6abd21c45432374bbbc3b4448685a3c, type: 3}
+  redSprites:
+  - {fileID: 5999008641623361547, guid: d21f0ba7e4e987b40a2128df2f4a232b, type: 3}
+  - {fileID: -3404640327367014881, guid: d21f0ba7e4e987b40a2128df2f4a232b, type: 3}
+  - {fileID: -7898122366004635154, guid: d21f0ba7e4e987b40a2128df2f4a232b, type: 3}
+  stretchedVelocity: 1.5
+  squashDuration: 0.08
 --- !u!4 &736161033 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6028034669122482286, guid: a985a9ea00a78b646ac10b8cd783a72d, type: 3}
@@ -5461,7 +5497,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 1121562362247880627, guid: 42089c5498730c54385496d49137229e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
