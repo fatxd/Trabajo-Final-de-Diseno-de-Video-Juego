@@ -1,10 +1,16 @@
 fileFormatVersion: 2
-guid: d09253b2f9d1f31419026a5123cad7fe
+guid: 42089c5498730c54385496d49137229e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7639076586056136374
-    second: Player azul IDK_0
+      213: 1121562362247880627
+    second: Player amarillo_0
+  - first:
+      213: -5928334608118142766
+    second: Player amarillo_1
+  - first:
+      213: 5603320770599460364
+    second: Player amarillo_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,12 +52,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -100,23 +106,67 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Player azul IDK_0
+      name: Player amarillo_0
       rect:
         serializedVersion: 2
-        x: 15
-        y: 17
-        width: 34
-        height: 30
+        x: 0
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a49ce1c815c8cf590800000000000000
-      internalID: -7639076586056136374
+      spriteID: 3bf9b33b607909f00800000000000000
+      internalID: 1121562362247880627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player amarillo_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d8a67565135abda0800000000000000
+      internalID: -5928334608118142766
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player amarillo_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0e162e9d8ef2cd40800000000000000
+      internalID: 5603320770599460364
       vertices: []
       indices: 
       edges: []
@@ -125,7 +175,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 550d614cb6e84a041a8a836c29c0e398
     internalID: 0
     vertices: []
     indices: 
@@ -133,9 +183,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":3.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Player azul IDK_0: -7639076586056136374
+      Player amarillo_0: 1121562362247880627
+      Player amarillo_1: -5928334608118142766
+      Player amarillo_2: 5603320770599460364
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

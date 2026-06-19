@@ -5,6 +5,8 @@ public class ScreenWrapPlayer : MonoBehaviour
     [Header("Referencias")]
     [SerializeField] private Camera mainCamera;
     [SerializeField] private Transform visualCopy;
+    [SerializeField] private SpriteRenderer playerSpriteRenderer;
+    [SerializeField] private SpriteRenderer visualCopySpriteRenderer;
 
     [Header("Ajustes")]
     [SerializeField] private float extraMargin = 0.5f;
@@ -33,10 +35,17 @@ public class ScreenWrapPlayer : MonoBehaviour
 
     private void CalculateLimits()
     {
-        float distanceToCamera = Mathf.Abs(mainCamera.transform.position.z - transform.position.z);
+        float distanceToCamera = Mathf.Abs(
+            mainCamera.transform.position.z - transform.position.z
+        );
 
-        Vector3 leftWorld = mainCamera.ViewportToWorldPoint(new Vector3(0f, 0.5f, distanceToCamera));
-        Vector3 rightWorld = mainCamera.ViewportToWorldPoint(new Vector3(1f, 0.5f, distanceToCamera));
+        Vector3 leftWorld = mainCamera.ViewportToWorldPoint(
+            new Vector3(0f, 0.5f, distanceToCamera)
+        );
+
+        Vector3 rightWorld = mainCamera.ViewportToWorldPoint(
+            new Vector3(1f, 0.5f, distanceToCamera)
+        );
 
         leftLimit = leftWorld.x;
         rightLimit = rightWorld.x;
@@ -79,8 +88,25 @@ public class ScreenWrapPlayer : MonoBehaviour
         }
 
         visualCopy.gameObject.SetActive(showCopy);
+
+        if (!showCopy)
+            return;
+
         visualCopy.position = copyPosition;
         visualCopy.rotation = transform.rotation;
-        visualCopy.localScale = transform.localScale;
+
+        // Como VisualCopy es hijo del Player, dejamos escala local normal.
+        // Así no se duplica ni se achica raro por heredar la escala del padre.
+        visualCopy.localScale = Vector3.one;
+
+        if (playerSpriteRenderer != null && visualCopySpriteRenderer != null)
+        {
+            visualCopySpriteRenderer.sprite = playerSpriteRenderer.sprite;
+            visualCopySpriteRenderer.flipX = playerSpriteRenderer.flipX;
+            visualCopySpriteRenderer.flipY = playerSpriteRenderer.flipY;
+
+            visualCopySpriteRenderer.sortingLayerID = playerSpriteRenderer.sortingLayerID;
+            visualCopySpriteRenderer.sortingOrder = playerSpriteRenderer.sortingOrder;
+        }
     }
 }

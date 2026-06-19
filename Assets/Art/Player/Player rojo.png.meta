@@ -1,10 +1,16 @@
 fileFormatVersion: 2
-guid: d8143d56bc3ac064082403c176088caf
+guid: d21f0ba7e4e987b40a2128df2f4a232b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3856455577232602315
-    second: Player amarillo IDK_0
+      213: 5999008641623361547
+    second: Player rojo_0
+  - first:
+      213: -3404640327367014881
+    second: Player rojo_1
+  - first:
+      213: -7898122366004635154
+    second: Player rojo_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,12 +52,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -100,23 +106,67 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Player amarillo IDK_0
+      name: Player rojo_0
       rect:
         serializedVersion: 2
-        x: 15
-        y: 17
-        width: 34
-        height: 30
+        x: 0
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: bc4f5054ae1e48530800000000000000
-      internalID: 3856455577232602315
+      spriteID: b0885705392c04350800000000000000
+      internalID: 5999008641623361547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player rojo_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f16c15b29a940c0d0800000000000000
+      internalID: -3404640327367014881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player rojo_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee9d9bddd8b346290800000000000000
+      internalID: -7898122366004635154
       vertices: []
       indices: 
       edges: []
@@ -125,7 +175,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: fc226a9464e66054bb63a8ba26a76f3f
     internalID: 0
     vertices: []
     indices: 
@@ -133,9 +183,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":3.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Player amarillo IDK_0: 3856455577232602315
+      Player rojo_0: 5999008641623361547
+      Player rojo_1: -3404640327367014881
+      Player rojo_2: -7898122366004635154
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
