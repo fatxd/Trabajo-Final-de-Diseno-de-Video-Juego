@@ -1,5 +1,4 @@
 using UnityEngine;
-using TMPro;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -7,8 +6,10 @@ public class ScoreManager : MonoBehaviour
 
     [Header("Referencias")]
     public Transform player;
-    public TMP_Text scoreText;
-    public TMP_Text bestText;
+
+    [Header("UI con sprites")]
+    public SpriteNumberDisplay scoreDisplay;
+    public SpriteNumberDisplay bestDisplay;
 
     private int score;
     private int bestScore;
@@ -49,13 +50,13 @@ public class ScoreManager : MonoBehaviour
 
     private void UpdateScoreUI()
     {
-        if (scoreText != null)
-            scoreText.text = "Score: " + score;
+        if (scoreDisplay != null)
+            scoreDisplay.SetNumber(score);
     }
 
     private void UpdateBestUI()
     {
-        if (bestText != null)
-            bestText.text = "Best: " + bestScore;
+        if (bestDisplay != null)
+            bestDisplay.SetNumber(bestScore);
     }
 }

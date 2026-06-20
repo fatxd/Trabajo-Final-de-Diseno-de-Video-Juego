@@ -1,12 +1,11 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using TMPro;
 
 public class GameOverManager : MonoBehaviour
 {
     [Header("UI")]
     [SerializeField] private GameObject gameOverPanel;
-    [SerializeField] private TMP_Text bestScoreText;
+    [SerializeField] private SpriteNumberDisplay bestScoreDisplay;
 
     [Header("Escenas")]
     [SerializeField] private string mainMenuSceneName = "Main Menu";
@@ -41,9 +40,9 @@ public class GameOverManager : MonoBehaviour
         if (gameOverPanel != null)
             gameOverPanel.SetActive(true);
 
-        if (bestScoreText != null && ScoreManager.Instance != null)
+        if (bestScoreDisplay != null && ScoreManager.Instance != null)
         {
-            bestScoreText.text = "BEST SCORE: " + ScoreManager.Instance.BestScore;
+            bestScoreDisplay.SetNumber(ScoreManager.Instance.BestScore);
         }
 
         Time.timeScale = 0f;

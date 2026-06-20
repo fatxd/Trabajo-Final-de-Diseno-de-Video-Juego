@@ -1,25 +1,49 @@
 using UnityEngine;
-using TMPro;
 
-[RequireComponent(typeof(TextMeshProUGUI))]
 public class Temporizador : MonoBehaviour
 {
-    private TextMeshProUGUI tiempoTexto;
-
+    [Header("Tiempo")]
     public float tiempoRestante = 180f;
 
-    void Start()
+    [Header("UI con sprites")]
+    [SerializeField] private SpriteNumberDisplay tiempoDisplay;
+
+    [Header("Game Over")]
+    [SerializeField] private GameOverManager gameOverManager;
+
+    private bool tiempoTerminado;
+
+    private void Start()
     {
-        tiempoTexto = GetComponent<TextMeshProUGUI>();
+        UpdateTimeUI();
     }
 
-    void Update()
+    private void Update()
     {
+        if (tiempoTerminado)
+            return;
+
         tiempoRestante -= Time.deltaTime;
 
-        if (tiempoRestante < 0)
+        if (tiempoRestante <= 0)
+        {
             tiempoRestante = 0;
+            tiempoTerminado = true;
 
-        tiempoTexto.text = $"Tiempo: {Mathf.CeilToInt(tiempoRestante)}";
+            UpdateTimeUI();
+
+            if (gameOverManager != null)
+                gameOverManager.ShowGameOver();
+
+            return;
+        }
+
+        UpdateTimeUI();
+    }
+
+    private void UpdateTimeUI()
+    {
+        if (tiempoDisplay != null)
+            tiempoDisplay.SetNumber(Mathf.CeilToInt(tiempoRestante));
     }
 }
