@@ -1,14 +1,14 @@
 using UnityEngine;
 
-public class GeneradorResortes : MonoBehaviour
+public class GeneradorJetpack : MonoBehaviour
 {
     [Header("Configuración")]
     // Arrastra aquí el Prefab del resorte desde tu carpeta de Proyecto
-    [SerializeField] private GameObject prefabResorte;
+    [SerializeField] private GameObject prefabJetpack;
 
     // Probabilidad de aparición (0 = nunca, 100 = en todas las plataformas)
     [Range(0, 100)]
-    [SerializeField] private float probabilidadAparicion = 20f;
+    [SerializeField] private float probabilidadAparicion = 10f;
 
     [Header("Ajuste de Posición")]
     // Distancia extra en el eje Y para que el resorte no quede flotando ni hundido
@@ -16,10 +16,10 @@ public class GeneradorResortes : MonoBehaviour
 
     private void Start()
     {
-        GenerarResortesEnEscena();
+        GenerarJetpack();
     }
 
-    private void GenerarResortesEnEscena()
+    private void GenerarJetpack()
     {
         // Busca todas las plataformas activas en la escena usando el Tag
         GameObject[] plataformas = GameObject.FindGameObjectsWithTag("Platform");
@@ -38,7 +38,7 @@ public class GeneradorResortes : MonoBehaviour
 
                 // Crea el resorte en el juego y lo hace hijo de la plataforma 
                 // (Para que si la plataforma se mueve, el resorte se mueva con ella)
-                GameObject nuevoResorte = Instantiate(prefabResorte, posicionResorte, Quaternion.identity);
+                GameObject nuevoResorte = Instantiate(prefabJetpack, posicionResorte, Quaternion.identity);
                 nuevoResorte.transform.SetParent(plataforma.transform);
             }
         }
