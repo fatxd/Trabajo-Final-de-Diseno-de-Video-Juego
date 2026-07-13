@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5accef86842568f43878ea16bc11970a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Resorte
-  fuerzaImpulso: 35
+  fuerzaImpulso: 20
 --- !u!95 &410495345892009444
 Animator:
   serializedVersion: 7
