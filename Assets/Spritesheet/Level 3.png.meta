@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: 8eb9c8df0945fc3478d7ccfa36ddfc2b
+guid: 379c4b8864ffa284fb4ea41c34062b98
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6676695962905242005
-    second: Satelite 1_0
+      213: -181837612720711962
+    second: Level 3_0
+  - first:
+      213: -2854342645736358856
+    second: Level 3_1
+  - first:
+      213: 1546923872526875483
+    second: Level 3_2
+  - first:
+      213: 483147584121888651
+    second: Level 3_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +55,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -100,13 +109,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Satelite 1_0
+      name: Level 3_0
       rect:
         serializedVersion: 2
-        x: 120
-        y: 431
-        width: 1735
-        height: 853
+        x: 252
+        y: 668
+        width: 22
+        height: 19
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +124,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b669fb9756c9753a0800000000000000
-      internalID: -6676695962905242005
+      spriteID: 6e61af697abf97df0800000000000000
+      internalID: -181837612720711962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Level 3_1
+      rect:
+        serializedVersion: 2
+        x: 263
+        y: 432
+        width: 727
+        height: 278
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83cb2a59c765368d0800000000000000
+      internalID: -2854342645736358856
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Level 3_2
+      rect:
+        serializedVersion: 2
+        x: 1036
+        y: 425
+        width: 244
+        height: 284
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b5b398ce017c77510800000000000000
+      internalID: 1546923872526875483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Level 3_3
+      rect:
+        serializedVersion: 2
+        x: 242
+        y: 588
+        width: 27
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8f5cadfa2c74b600800000000000000
+      internalID: 483147584121888651
       vertices: []
       indices: 
       edges: []
@@ -125,7 +200,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +210,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Satelite 1_0: -6676695962905242005
+      Level 3_0: -181837612720711962
+      Level 3_1: -2854342645736358856
+      Level 3_2: 1546923872526875483
+      Level 3_3: 483147584121888651
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
