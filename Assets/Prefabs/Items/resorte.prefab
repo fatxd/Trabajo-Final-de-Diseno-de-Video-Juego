@@ -153,6 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Resorte
   fuerzaImpulso: 20
+  sonidoBoing: {fileID: 8300000, guid: 897eab9cf55fd67448fc77254bd94dd4, type: 3}
 --- !u!95 &410495345892009444
 Animator:
   serializedVersion: 7

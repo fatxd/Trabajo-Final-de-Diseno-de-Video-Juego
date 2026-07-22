@@ -1,5 +1,8 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.EnhancedTouch;
+using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
 
 public class GameOverManager : MonoBehaviour
 {
@@ -7,10 +10,25 @@ public class GameOverManager : MonoBehaviour
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private SpriteNumberDisplay bestScoreDisplay;
 
+    [Header("Audio")]
+    [SerializeField] private AudioClip gameOverSound; // <--- Sonido de Game Over
+
     [Header("Escenas")]
     [SerializeField] private string mainMenuSceneName = "Main Menu";
 
-    private bool isGameOver;
+    private bool isGameOver = false;
+    private float gameOverTime = 0f;
+    private const float COOLDOWN_TIME = 5f;
+
+    private void OnEnable()
+    {
+        EnhancedTouchSupport.Enable();
+    }
+
+    private void OnDisable()
+    {
+        EnhancedTouchSupport.Disable();
+    }
 
     private void Start()
     {
@@ -20,22 +38,45 @@ public class GameOverManager : MonoBehaviour
 
     private void Update()
     {
-        if (!isGameOver)
-            return;
+        if (!isGameOver) return;
 
-        if (Input.GetMouseButtonDown(0) || Input.touchCount > 0)
+        if (Time.unscaledTime - gameOverTime < COOLDOWN_TIME) return;
+
+        if (Touch.activeTouches.Count > 0)
         {
-            Time.timeScale = 1f;
-            SceneManager.LoadScene(mainMenuSceneName);
+            var touch = Touch.activeTouches[0];
+            if (touch.phase == UnityEngine.InputSystem.TouchPhase.Began)
+            {
+                GoToMainMenu();
+                return;
+            }
+        }
+
+        if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
+        {
+            GoToMainMenu();
+            return;
+        }
+
+        if (Keyboard.current != null && (Keyboard.current.spaceKey.wasPressedThisFrame || Keyboard.current.enterKey.wasPressedThisFrame))
+        {
+            GoToMainMenu();
+            return;
         }
     }
 
     public void ShowGameOver()
     {
-        if (isGameOver)
-            return;
+        if (isGameOver) return;
 
         isGameOver = true;
+        gameOverTime = Time.unscaledTime;
+
+        // Reproducir sonido de derrota en la posición de la cámara
+        if (gameOverSound != null && Camera.main != null)
+        {
+            AudioSource.PlayClipAtPoint(gameOverSound, Camera.main.transform.position);
+        }
 
         if (gameOverPanel != null)
             gameOverPanel.SetActive(true);
@@ -46,5 +87,11 @@ public class GameOverManager : MonoBehaviour
         }
 
         Time.timeScale = 0f;
+    }
+
+    private void GoToMainMenu()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(mainMenuSceneName);
     }
 }

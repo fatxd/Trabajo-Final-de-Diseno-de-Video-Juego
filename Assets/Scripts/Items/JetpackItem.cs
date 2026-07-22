@@ -30,10 +30,10 @@ public class JetpackItem : MonoBehaviour
             jetpackHijo.IniciarVueloAutomatico();
         }
 
-        // Sonido de activación instantánea
-        if (jetSound != null)
+        // Reproducir sonido en la posición de la cámara para que se escuche perfecto en 2D
+        if (jetSound != null && Camera.main != null)
         {
-            AudioSource.PlayClipAtPoint(jetSound, transform.position);
+            AudioSource.PlayClipAtPoint(jetSound, Camera.main.transform.position);
         }
 
         // Destruir el ítem del mapa de inmediato

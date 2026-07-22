@@ -3,6 +3,10 @@ using UnityEngine;
 public class Resorte : MonoBehaviour
 {
     [SerializeField] private float fuerzaImpulso = 20f;
+
+    [Header("Audio")]
+    [SerializeField] private AudioClip sonidoBoing; // <--- Clip de sonido para el rebote
+
     private Animator animator;
 
     private void Start()
@@ -26,6 +30,12 @@ public class Resorte : MonoBehaviour
                 if (animator != null)
                 {
                     animator.SetTrigger("Comprimir");
+                }
+
+                // Reproducir sonido del resorte centrado en la cámara
+                if (sonidoBoing != null && Camera.main != null)
+                {
+                    AudioSource.PlayClipAtPoint(sonidoBoing, Camera.main.transform.position);
                 }
             }
         }
